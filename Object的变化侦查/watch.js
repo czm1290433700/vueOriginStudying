@@ -1,4 +1,4 @@
-import parsePath from './utils';
+import { parsePath } from './utils';
 /**
  * 依赖类
  */
