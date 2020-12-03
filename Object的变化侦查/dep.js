@@ -1,3 +1,4 @@
+let uid = 0;
 /**
  * 依赖工具类
  */
@@ -16,7 +17,8 @@ export default class Dep {
     // 收集依赖
     depend(){
         if(window.target){
-            this.addSub(window.target);
+            window.target.addDep(this);
+            // this.addSub(window.target);
         }
     }
     // 向依赖发送通知
