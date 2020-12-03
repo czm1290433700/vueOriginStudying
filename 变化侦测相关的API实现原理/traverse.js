@@ -32,7 +32,7 @@ function _traverse(val, seen) {
         keys = Object.keys(val);
         i = keys.length;
         while(i--) {
-            _traverse(val[keys[i]], seen); // 这里会触发getter，也就是触发收集依赖的操作
+            _traverse(val[keys[i]], seen);
         }
     }
 }
