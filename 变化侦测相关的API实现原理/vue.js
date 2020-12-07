@@ -1,5 +1,6 @@
 import Watcher from '../object的变化侦查/watch';
 import { set, del } from '../Object的变化侦查/observer';
+import { patch } from '../VNode/patch';
 
 export class Vue{
 
@@ -26,3 +27,6 @@ Vue.prototype.$set = set;
 
 // vm.$delete
 Vue.prototype.$delete = del;
+
+// 定义补丁函数，将虚拟DOM转换为真实DOM
+Vue.prototype.__patch__ = patch;
