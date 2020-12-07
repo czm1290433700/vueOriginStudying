@@ -74,3 +74,31 @@ export function cloneVNode(vnode, deep) {
     }
     return cloned;
 }
+
+/**
+ * 删除元素节点
+ * @param {*} vnodes 
+ * @param {*} startIdx 
+ * @param {*} endIdx 
+ */
+export function removeVnodes(vnodes, startIdx, endIdx) {
+    for(; startIdx <= endIdx; ++startIdx) {
+        const ch = vnodes[startIdx];
+        if(isDef(ch)) {
+            removeNode(ch.elm);
+        }
+    }
+}
+
+const nodeOps = {
+    removeChild(node, child) {
+        node.removeChild(child);
+    }
+}
+
+function removeNode() {
+    const parent = nodeOps.parentNode(el); // nodeOps是对节点操作的封装，让框架的渲染机制和DOM解耦，实现跨平台渲染
+    if(isDef(parent)){
+        nodeOps.removeChild(parent, el);
+    }
+}
