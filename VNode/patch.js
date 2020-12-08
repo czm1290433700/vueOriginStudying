@@ -108,6 +108,20 @@ function sameInputType(a, b) {
 }
 
 
+/**
+ * 1.如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次）
+ * ，那么只需要替换elm以及componentInstance即可。
+ * 2.新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren，这个updateChildren也是diff的核心。
+ * 3.如果老节点没有子节点而新节点存在子节点，先清空老节点DOM的文本内容，然后为当前DOM节点加入子节点。
+ * 4.当新节点没有子节点而老节点有子节点的时候，则移除该DOM节点的所有子节点。
+ * 5.当新老节点都无子节点的时候，只是文本的替换。
+ * @param {*} oldVnode 
+ * @param {*} vnode 
+ * @param {*} insertedVnodeQueue 
+ * @param {*} ownerArray 
+ * @param {*} index 
+ * @param {*} removeOnly 
+ */
 function patchVnode (
     oldVnode,
     vnode,
